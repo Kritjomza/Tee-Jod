@@ -9,8 +9,8 @@ export default function Home() {
       <LiffInitializer />
       <header className="brand-header">
         <div className="brand-lockup">
-          <div className="seal-wrap"><Image src="/kmutt-seal.png" alt="KMUTT seal" width={48} height={48} priority /></div>
-          <div><p className="eyebrow">KMUTT SMART PARKING</p><h1>Tee-Jod <span>ที่จอด</span></h1></div>
+          <div className="seal-wrap"><Image src="/kmutt-seal.png" alt="KMUTT seal" width={48} height={48} preload /></div>
+          <div><p className="brand-context">KMUTT parking</p><h1>Tee-Jod <span>ที่จอด</span></h1></div>
         </div>
         <div className="campus-pill"><MapPin size={14} aria-hidden="true" /> Bangmod Campus</div>
       </header>

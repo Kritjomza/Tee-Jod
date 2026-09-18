@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ParkingDashboard } from "@/components/parking/parking-dashboard";
 
@@ -31,4 +31,22 @@ it("offers retry after a failed request", async () => {
   expect(await screen.findByText(/could not load/i)).toBeInTheDocument();
   await userEvent.click(screen.getByRole("button", { name: /try again/i }));
   await waitFor(() => expect(screen.getByRole("heading", { level: 3, name: "FIBO Parking" })).toBeInTheDocument());
+});
+
+it("announces refresh progress through the refresh control", async () => {
+  let resolveRefresh!: (value: unknown) => void;
+  const fetchMock = vi.fn()
+    .mockResolvedValueOnce({ ok: true, json: async () => response })
+    .mockImplementationOnce(() => new Promise((resolve) => { resolveRefresh = resolve; }));
+  vi.stubGlobal("fetch", fetchMock);
+
+  render(<ParkingDashboard />);
+  await screen.findByRole("heading", { level: 3, name: "FIBO Parking" });
+
+  await userEvent.click(screen.getByRole("button", { name: /refresh parking availability/i }));
+
+  expect(screen.getByRole("button", { name: /refreshing availability/i })).toBeDisabled();
+  await act(async () => {
+    resolveRefresh({ ok: true, json: async () => response });
+  });
 });
