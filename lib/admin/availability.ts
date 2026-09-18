@@ -1,0 +1,2 @@
+export type AvailabilityValidation={ok:true;value:number}|{ok:false;error:string};
+export function validateAvailability(value:unknown,capacity:number):AvailabilityValidation{ if(typeof value!=="number"||!Number.isInteger(value))return{ok:false,error:"Availability must be a whole number"}; if(value<0||value>capacity)return{ok:false,error:`Availability must be between 0 and ${capacity}`}; return{ok:true,value}; }

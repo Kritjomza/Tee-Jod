@@ -1,0 +1,5 @@
+import { NextRequest,NextResponse } from "next/server";
+import { z } from "zod";
+import { updateParkingLot } from "@/lib/parking/store";
+const UpdateSchema=z.object({availableSpaces:z.number().int(),pin:z.string().min(1)});
+export async function PATCH(request:NextRequest,context:{params:Promise<{id:string}>}){const body=UpdateSchema.safeParse(await request.json().catch(()=>null));if(!body.success)return NextResponse.json({error:"Invalid update request"},{status:400});if(!process.env.ADMIN_PIN||body.data.pin!==process.env.ADMIN_PIN)return NextResponse.json({error:"Incorrect admin PIN"},{status:401});try{const{id}=await context.params;const updated=await updateParkingLot(id,body.data.availableSpaces);if(!updated)return NextResponse.json({error:"Parking area not found"},{status:404});return NextResponse.json(updated);}catch(error){if(error instanceof RangeError)return NextResponse.json({error:error.message},{status:400});return NextResponse.json({error:"Parking data is temporarily unavailable"},{status:503});}}

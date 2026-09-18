@@ -1,0 +1,1 @@
+export async function initializeLiff(){ const liffId=process.env.NEXT_PUBLIC_LIFF_ID; if(!liffId||typeof window==="undefined")return{inClient:false}; const{default:liff}=await import("@line/liff"); await liff.init({liffId}); return{inClient:liff.isInClient()}; }

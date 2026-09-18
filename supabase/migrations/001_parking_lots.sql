@@ -1,0 +1,5 @@
+create table if not exists public.parking_lots (id text primary key,name text not null,capacity integer not null check (capacity>0),available_spaces integer not null check (available_spaces between 0 and capacity),latitude double precision check (latitude is null or latitude between -90 and 90),longitude double precision check (longitude is null or longitude between -180 and 180),updated_at timestamptz not null default now());
+alter table public.parking_lots enable row level security;
+create policy "parking lots are publicly readable" on public.parking_lots for select to anon using (true);
+insert into public.parking_lots(id,name,capacity,available_spaces,latitude,longitude) values ('student-lot','Student Parking',60,8,null,null),('stadium','Sports Field Parking',100,42,null,null),('fibo','FIBO Parking',200,127,null,null),('parking-building-1','Parking Building 1',366,19,null,null) on conflict(id) do update set name=excluded.name,capacity=excluded.capacity,available_spaces=excluded.available_spaces;
+-- Add verified KMUTT coordinates in a later migration before enabling navigation.

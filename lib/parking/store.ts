@@ -1,0 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
+import { seedParkingLots } from "./mock-data";
+import { ParkingLotSchema,type ParkingLot } from "./schema";
+import { validateAvailability } from "@/lib/admin/availability";
+const mockLots=seedParkingLots.map((lot)=>({...lot}));
+function hasSupabase(){return process.env.DATA_MODE==="supabase"&&Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL&&process.env.SUPABASE_SERVICE_ROLE_KEY);}
+function mapRow(row:Record<string,unknown>):ParkingLot{return ParkingLotSchema.parse({id:row.id,name:row.name,capacity:row.capacity,availableSpaces:row.available_spaces,latitude:row.latitude,longitude:row.longitude,updatedAt:row.updated_at});}
+function adminClient(){return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.SUPABASE_SERVICE_ROLE_KEY!,{auth:{persistSession:false}});}
+export async function listParkingLots():Promise<ParkingLot[]>{if(!hasSupabase())return mockLots.map((lot)=>({...lot}));const{data,error}=await adminClient().from("parking_lots").select("id,name,capacity,available_spaces,latitude,longitude,updated_at");if(error)throw error;return(data??[]).map(mapRow);}
+export async function updateParkingLot(id:string,availableSpaces:number):Promise<ParkingLot|null>{if(!hasSupabase()){const index=mockLots.findIndex((lot)=>lot.id===id);if(index<0)return null;const validation=validateAvailability(availableSpaces,mockLots[index].capacity);if(!validation.ok)throw new RangeError(validation.error);mockLots[index]={...mockLots[index],availableSpaces:validation.value,updatedAt:new Date().toISOString()};return{...mockLots[index]};}const client=adminClient();const{data:existing,error:readError}=await client.from("parking_lots").select("capacity").eq("id",id).maybeSingle();if(readError)throw readError;if(!existing)return null;const validation=validateAvailability(availableSpaces,existing.capacity);if(!validation.ok)throw new RangeError(validation.error);const{data,error}=await client.from("parking_lots").update({available_spaces:validation.value,updated_at:new Date().toISOString()}).eq("id",id).select().single();if(error)throw error;return mapRow(data);}
