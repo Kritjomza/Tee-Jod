@@ -51,7 +51,7 @@ a { color: inherit; text-underline-offset: .2em; } ::selection { color: var(--wh
 .map-selection a:active { transform: scale(.97); }
 .lot-number { color: var(--orange-deep); font-size: .75rem; font-weight: 800; }
 .parking-card-selected { background: #fffaf7; }
-.lot-details { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; color: var(--muted); font-size: .72rem; }
+.lot-details { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; color: var(--muted); font-size: .82rem; }
 .card-foot button { padding: 0; border: 0; color: var(--orange-deep); background: none; cursor: pointer; font-size: inherit; font-weight: 700; }
 .brand-lockup { display: flex; align-items: center; gap: 13px; min-width: 0; }
 .seal-wrap { width: 48px; height: 48px; flex: 0 0 auto; display: grid; place-items: center; padding: 5px; border-radius: 13px; background: var(--ink); }
@@ -109,18 +109,35 @@ h1 span { margin-left: 3px; font-family: var(--font-sans); font-weight: 600; }
 footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 30px 2px 0; color: var(--muted); font-size: .67rem; }
 
 .admin-shell { width: min(100%, 820px); margin: 0 auto; padding: 26px 20px 44px; }
-.admin-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 52px; font-size: .8rem; }
+.admin-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 52px; font-size: .84rem; }
 .back-link { color: var(--orange-deep); font-weight: 700; text-decoration: none; }
-.admin-intro { margin-bottom: 30px; } .admin-intro h1 { max-width: 17ch; font-size: clamp(2rem, 7vw, 3.1rem); text-wrap: balance; }
+.admin-intro { margin-bottom: 30px; } .admin-intro h1 { max-width: 17ch; font-size: 1.75rem; text-wrap: balance; }
 .admin-intro p { max-width: 62ch; margin: 14px 0 0; color: var(--muted); line-height: 1.65; }
 .pin-panel { display: grid; gap: 8px; margin-bottom: 28px; padding: 20px; border-radius: 16px; color: var(--white); background: var(--ink); }
-.pin-panel label { font-size: .76rem; color: #c7c0bb; }
+.pin-panel label { font-size: .84rem; color: #c7c0bb; }
 .pin-panel input { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #4a4643; border-radius: 10px; color: var(--white); background: #2b2826; }
 .pin-panel input::placeholder { color: #9f9893; }
 .admin-grid { display: grid; gap: 0; border-block: 1px solid var(--line); }
 .admin-card { padding: 22px 2px; border-bottom: 1px solid var(--line); } .admin-card:last-child { border-bottom: 0; }
-.admin-card h2 { margin: 0 0 3px; font-size: .96rem; } .admin-card p { margin: 0; color: var(--muted); font-size: .77rem; }
+.admin-card h2 { margin: 0 0 3px; font-size: .96rem; } .admin-card p { margin: 0; color: var(--muted); font-size: .84rem; }
 .admin-card p strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+.admin-settings-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.admin-settings-form label, .risk-form > label { display: grid; gap: 6px; font-size: .84rem; font-weight: 650; }
+.admin-settings-form input, .risk-form textarea { width: 100%; min-width: 0; min-height: 44px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
+.admin-public-count { grid-column: 1 / -1; padding: 10px 12px; border-radius: 8px; background: var(--surface-strong); }
+.admin-public-count strong { font-size: 1rem; }
+.admin-save-button, .admin-alert-button, .clear-alert-button { min-height: 44px; padding: 9px 13px; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer; }
+.admin-save-button { color: var(--white); background: var(--ink); }
+.admin-alert-button { color: var(--white); background: var(--orange-deep); }
+.admin-save-button:disabled, .admin-alert-button:disabled, .clear-alert-button:disabled { opacity: .55; cursor: wait; }
+.risk-form { display: grid; gap: 9px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.risk-form textarea { min-height: 80px; resize: vertical; }
+.risk-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.clear-alert-button { border: 1px solid var(--line); background: var(--white); }
+.active-alert { padding: 10px 12px; border-radius: 8px; color: #7f2626 !important; background: var(--danger-soft); line-height: 1.5; }
+.risk-alerts { margin: 0 0 24px; padding: 14px 17px; border-radius: 12px; color: #7f2626; background: var(--danger-soft); }
+.risk-alerts h2 { margin: 0 0 6px; font-size: .9rem; }
+.risk-alerts p { margin: 4px 0 0; line-height: 1.5; }
 .admin-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
 .adjust-button { min-width: 46px; min-height: 42px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); cursor: pointer; font-weight: 700; transition: border-color 150ms, color 150ms, background 150ms; }
 .adjust-button:hover { border-color: var(--orange); color: var(--orange-deep); background: #fff9f6; } .adjust-button:disabled { opacity: .48; cursor: wait; }
@@ -128,7 +145,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
 .exact-form input { width: 100%; min-width: 80px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); }
 .exact-form button { min-height: 42px; padding: 8px 14px; border: 0; border-radius: 10px; color: var(--white); background: var(--orange); font-weight: 700; cursor: pointer; }
 .exact-form button:disabled { opacity: .48; cursor: wait; }
-.notice { margin: 0 0 18px; padding: 12px 14px; border-radius: 10px; font-size: .8rem; }
+.notice { margin: 0 0 18px; padding: 12px 14px; border-radius: 10px; font-size: .84rem; }
 .notice-error { color: #7f2626; background: var(--danger-soft); } .notice-success { color: #135b39; background: var(--success-soft); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
@@ -143,6 +160,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8p
   .parking-card:nth-last-child(-n + 2), .admin-card:nth-last-child(-n + 2) { border-bottom: 0; }
 }
 @media (max-width: 559px) {
+  .admin-settings-form { grid-template-columns: 1fr; }
   .parking-map { height: 340px; }
   .map-legend { grid-template-columns: 1fr; }
   .map-legend button { min-height: 48px; border-right: 0; border-bottom: 1px solid var(--line); }

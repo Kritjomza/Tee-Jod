@@ -6,10 +6,10 @@ vi.mock("@/components/parking/parking-map", () => ({ ParkingMap: () => <div data
 
 const response = {
   lots: [
-    { id: "student-lot", name: "CB2 Parking", capacity: 60, availableSpaces: 8, latitude: 13.6509586, longitude: 100.4928881, updatedAt: "2026-09-18T00:00:00.000Z" },
-    { id: "stadium", name: "Sports Field Parking", capacity: 100, availableSpaces: 42, latitude: null, longitude: null, updatedAt: "2026-09-18T00:00:00.000Z" },
-    { id: "fibo", name: "FIBO Parking", capacity: 200, availableSpaces: 127, latitude: 13.6543155, longitude: 100.4939698, updatedAt: "2026-09-18T00:00:00.000Z" },
-    { id: "parking-building-1", name: "Parking Building 1", capacity: 366, availableSpaces: 19, latitude: 13.6503016, longitude: 100.4951975, updatedAt: "2026-09-18T00:00:00.000Z" },
+    { id: "student-lot", name: "CB2 Parking", capacity: 60, availableSpaces: 8, reservedSpaces: 0, accessibleSpaces: 0, evChargerSpaces: 0, warning: null, latitude: 13.6509586, longitude: 100.4928881, updatedAt: "2026-09-18T00:00:00.000Z" },
+    { id: "stadium", name: "Sports Field Parking", capacity: 100, availableSpaces: 42, reservedSpaces: 0, accessibleSpaces: 0, evChargerSpaces: 0, warning: null, latitude: null, longitude: null, updatedAt: "2026-09-18T00:00:00.000Z" },
+    { id: "fibo", name: "FIBO Parking", capacity: 200, availableSpaces: 127, reservedSpaces: 0, accessibleSpaces: 0, evChargerSpaces: 0, warning: null, latitude: 13.6543155, longitude: 100.4939698, updatedAt: "2026-09-18T00:00:00.000Z" },
+    { id: "parking-building-1", name: "Parking Building 1", capacity: 366, availableSpaces: 19, reservedSpaces: 0, accessibleSpaces: 0, evChargerSpaces: 0, warning: null, latitude: 13.6503016, longitude: 100.4951975, updatedAt: "2026-09-18T00:00:00.000Z" },
   ],
   generatedAt: "2026-09-18T00:00:00.000Z",
   source: "prototype" as const,
